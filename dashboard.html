@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nath Krupa Laxmi Plastic - Challan Dashboard</title>
+
+<style>
+
+:root {
+
+    --primary: #183b70;
+
+    --blue: #2563eb;
+
+    --background: #f3f6fb;
+
+    --border: #dbe3ee;
+
+    --text: #172033;
+
+}
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+}
+
+header {
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 16px 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+.brand {
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+}
+
+button {
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 11px 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: var(--blue);
+
+    color: white;
+
+}
+
+button.secondary {
+
+    background: #e8eef8;
+
+    color: var(--primary);
+
+}
+
+button.danger {
+
+    background: #b91c1c;
+
+}
+
+button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
+main {
+
+    max-width: 1200px;
+
+    margin: 24px auto;
+
+    padding: 0 16px;
+
+}
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+}
+
+.stat,
+
+.panel {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+}
+
+.stat small {
+
+    display: block;
+
+    color: #64748b;
+
+    margin-bottom: 8px;
+
+}
+
+.stat strong {
+
+    font-size: 25px;
+
+}
+
+.layout {
+
+    display: grid;
+
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 16px;
+
+}
+
+h2 {
+
+    font-size: 19px;
+
+    margin: 0 0 16px;
+
+}
+
+h3 {
+
+    font-size: 15px;
+
+    color: var(--primary);
+
+    margin: 22px 0 12px;
+
+}
+
+label {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    color: #475569;
+
+    margin-bottom: 6px;
+
+}
+
+input,
+
+textarea {
+
+    width: 100%;
+
+    min-width: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    padding: 11px;
+
+    font: inherit;
+
+    background: white;
+
+}
+
+textarea {
+
+    resize: vertical;
+
+    min-height: 75px;
+
+}
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+}
+
+.full {
+
+    grid-column: 1 / -1;
+
+}
+
+.notice {
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 14px;
+
+}
+
+.message {
+
+    display: none;
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    margin: 10px 0;
+
+    font-size: 13px;
+
+}
+
+.message.error {
+
+    display: block;
+
+    background: #fef2f2;
+
+    color: #991b1b;
+
+}
+
+.message.success {
+
+    display: block;
+
+    background: #f0fdf4;
+
+    color: #166534;
+
+}
+
+.item-row {
+
+    display: grid;
+
+    grid-template-columns: 1.5fr 0.65fr 0.8fr 0.9fr 1fr auto;
+
+    gap: 7px;
+
+    margin: 8px 0;
+
+    align-items: center;
+
+}
+
+.item-row input {
+
+    padding: 9px;
+
+    font-size: 13px;
+
+}
+
+.item-actions {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+.searchbar {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+}
+
+.searchbar input {
+
+    flex: 1;
+
+}
+
+.results {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+}
+
+.record {
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+.record strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+}
+
+.record small {
+
+    color: #64748b;
+
+}
+
+.record-actions {
+
+    display: flex;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+
+}
+
+.empty {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    padding: 18px 0;
+
+}
+
+footer {
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    padding: 20px;
+
+}
+
+@media(max-width:850px) {
+
+    .layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+@media(max-width:560px) {
+
+    header {
+
+        padding: 13px;
+
+    }
+
+    .brand {
+
+        font-size: 16px;
+
+    }
+
+    header button {
+
+        padding: 9px;
+
+        font-size: 12px;
+
+    }
+
+    main {
+
+        margin: 14px auto;
+
+        padding: 0 10px;
+
+    }
+
+    .stats {
+
+        gap: 7px;
+
+    }
+
+    .stat {
+
+        padding: 12px;
+
+    }
+
+    .stat strong {
+
+        font-size: 20px;
+
+    }
+
+    .stat small {
+
+        font-size: 11px;
+
+    }
+
+    .panel {
+
+        padding: 13px;
+
+    }
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+        .full {
+
+        grid-column: auto;
+
+    }
+
+    .item-row {
+
+        grid-template-columns: 1fr 0.7fr;
+
+    }
+
+    .item-row input:nth-child(3),
+
+    .item-row input:nth-child(4),
+
+    .item-row input:nth-child(5) {
+
+        grid-column: 1;
+
+    }
+
+    .searchbar {
+
+        flex-wrap: wrap;
+
+    }
+
+    .searchbar input {
+
+        flex-basis: 100%;
+
+    }
+
+    .record {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">Nath Krupa Laxmi Plastic</div>
+
+    <div>
+
+        <button class="secondary" id="refreshBtn">Refresh</button>
+
+        <button id="logoutBtn">Logout</button>
+
+    </div>
+
+</header>
+
+<main>
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <small>Total Challans</small>
+
+            <strong id="totalCount">0</strong>
+
+        </div>
+
+        <div class="stat">
+
+            <small>Latest Challan</small>
+
+            <strong id="latestCount">—</strong>
+
+        </div>
+
+        <div class="stat">
+
+            <small>Total Items</small>
+
+            <strong id="itemCount">0</strong>
+
+        </div>
+
+    </div>
+
+    <div class="layout">
+
+        <!-- CHALLAN ENTRY FORM -->
+
+        <section class="panel">
+
+            <h2 id="formTitle">Add Challan</h2>
+
+            <div class="notice">
+
+                Enter the challan information and save it.
+
+                Challan number must be unique.
+
+            </div>
+
+            <div id="message" class="message"></div>
+
+            <form id="challanForm">
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>Challan Number *</label>
+
+                        <input id="challan_no"
+
+                               required
+
+                               placeholder="e.g. 207">
+
+                    </div>
+
+                    <div>
+
+                        <label>Challan Date *</label>
+
+                        <input id="challan_date"
+
+                               type="date"
+
+                               required>
+
+                    </div>
+
+                    <div>
+
+                        <label>M/s. Customer Name *</label>
+
+                        <input id="customer_name"
+
+                               required
+
+                               placeholder="Customer / Company">
+
+                    </div>
+
+                    <div>
+
+                        <label>Customer Address</label>
+
+                        <textarea id="customer_address"
+
+                                  placeholder="Customer address"></textarea>
+
+                    </div>
+
+                    <div>
+
+                        <label>Order Number</label>
+
+                        <input id="order_no">
+
+                    </div>
+
+                    <div>
+
+                        <label>Order Date</label>
+
+                        <input id="order_date"
+
+                               type="date">
+
+                    </div>
+
+                    <div class="full">
+
+                        <label>P. Challan Number</label>
+
+                        <input id="p_challan_no">
+
+                    </div>
+
+                </div>
+
+                <h3>Items / Description</h3>
+
+                <div id="itemRows"></div>
+
+                <div class="item-actions">
+
+                    <button type="button"
+
+                            class="secondary"
+
+                            id="addItemBtn">
+
+                        + Add Item
+
+                    </button>
+
+                </div>
+
+                <div style="display:flex;gap:10px;margin-top:12px;align-items:center;flex-wrap:wrap">
+
+                    <label for="total_amount" style="margin:0">
+
+                        Overall Total Amount
+
+                    </label>
+
+                    <input id="total_amount"
+
+                           type="number"
+
+                           min="0"
+
+                           step="0.01"
+
+                           value="0"
+
+                           style="max-width:190px">
+
+                </div>
+
+                <h3>Additional Details</h3>
+
+                <div>
+
+                    <label>Notes / Return Material</label>
+
+                    <textarea id="notes"
+
+                              placeholder="Additional details"></textarea>
+
+                </div>
+
+                <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+
+                    <button type="submit" id="saveBtn">
+
+                        Save Challan
+
+                    </button>
+
+                    <button type="button"
+
+                            class="secondary"
+
+                            id="enableEditBtn"
+
+                            style="display:none">
+
+                        Enable Edit
+
+                    </button>
+
+                    <button type="button"
+
+                            class="secondary"
+
+                            id="clearBtn">
+
+                        Clear Form
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- SEARCH CHALLAN -->
+
+        <section class="panel">
+
+            <h2>Find Challan</h2>
+
+            <div class="searchbar">
+
+                <input id="searchInput"
+
+                       placeholder="Search challan number or customer">
+
+                <button id="searchBtn">
+
+                    Search
+
+                </button>
+
+            </div>
+
+            <div id="results" class="results">
+
+                <div class="empty">
+
+                    Loading challans...
+
+                </div>
+
+            </div>
+
+            <div class="notice" style="margin-top:15px">
+
+                Search a challan, load its details, or download its
+
+                filled PDF or Excel file.
+
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+
+                <button type="button" id="excelBtn">Download Excel</button>
+
+                <button type="button" id="pdfBtn">Download PDF</button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<footer>
+
+    Nath Krupa Laxmi Plastic - Challan Management System
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+<script type="module">
+
+import {
+
+    createClient
+
+} from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// SUPABASE CONFIGURATION
+
+const SUPABASE_URL =
+
+    "https://myftwnmpuuskpiahdvdk.supabase.co";
+
+// Replace with your Supabase public anon/publishable key.
+
+// Never use your service_role key in frontend code.
+
+const SUPABASE_ANON_KEY =
+
+    "sb_publishable_mSmHPAAncRtNWYyZHkC6kA_iVVkVNmO";
+
+const supabase = createClient(
+
+    SUPABASE_URL,
+
+    SUPABASE_ANON_KEY
+
+);
+
+const $ = id => document.getElementById(id);
+
+let records = [];
+
+let editingId = null;
+
+// MESSAGE DISPLAY
+
+function showMessage(text, type = "error") {
+
+    $("message").textContent = text;
+
+    $("message").className = "message " + type;
+
+}
+
+function clearMessage() {
+
+    $("message").textContent = "";
+
+    $("message").className = "message";
+
+}
+
+// CREATE ITEM ROW
+
+function addItemRow(item = {}) {
+
+    const row = document.createElement("div");
+
+    row.className = "item-row";
+
+    const description = document.createElement("input");
+
+    description.placeholder = "Description";
+
+    description.value = item.description || "";
+
+    const quantity = document.createElement("input");
+
+    quantity.type = "number";
+
+    quantity.min = "0";
+
+    quantity.step = "any";
+
+    quantity.placeholder = "Quantity";
+
+    quantity.value = item.quantity ?? "";
+
+    const rate = document.createElement("input");
+
+    rate.type = "number";
+
+    rate.min = "0";
+
+    rate.step = "0.01";
+
+    rate.placeholder = "Rate / piece";
+
+    rate.value = item.rate ?? "";
+
+    const lineTotal = document.createElement("input");
+
+    lineTotal.type = "number";
+
+    lineTotal.placeholder = "Line Total";
+
+    lineTotal.readOnly = true;
+
+    lineTotal.value = item.total ?? "";
+
+    const remarks = document.createElement("input");
+
+    remarks.placeholder = "Remarks";
+
+    remarks.value = item.remarks || "";
+
+    // Calculate quantity × rate.
+
+    function updateLineTotal() {
+
+        const q = Number(quantity.value) || 0;
+
+        const r = Number(rate.value) || 0;
+
+        if (quantity.value !== "" && rate.value !== "") {
+
+            lineTotal.value = (q * r).toFixed(2);
+
+        } else {
+
+            lineTotal.value = "";
+
+        }
+
+        updateOverallTotal();
+
+    }
+
+    quantity.addEventListener("input", updateLineTotal);
+
+    rate.addEventListener("input", updateLineTotal);
+
+    const remove = document.createElement("button");
+
+    remove.type = "button";
+
+    remove.textContent = "×";
+
+    remove.className = "danger";
+
+    remove.addEventListener("click", () => {
+
+        row.remove();
+
+        if (!$("itemRows").children.length) {
+
+            addItemRow();
+
+        }
+
+        updateOverallTotal();
+
+    });
+
+    row.append(
+
+        description,
+
+        quantity,
+
+        rate,
+
+        lineTotal,
+
+        remarks,
+
+        remove
+
+    );
+
+    $("itemRows").appendChild(row);
+
+    updateLineTotal();
+
+}
+
+// GET ITEM DATA
+
+function getItems() {
+
+    return [...$("itemRows").children]
+
+        .map(row => {
+
+            const inputs = row.querySelectorAll("input");
+
+            const quantity = inputs[1].value;
+
+            const rate = inputs[2].value;
+
+            const total = inputs[3].value;
+
+            return {
+
+                description: inputs[0].value.trim(),
+
+                quantity: quantity === ""
+
+                    ? ""
+
+                    : Number(quantity),
+
+                rate: rate === ""
+
+                    ? ""
+
+                    : Number(rate),
+
+                total: total === ""
+
+                    ? ""
+
+                    : Number(total),
+
+                remarks: inputs[4].value.trim()
+
+            };
+
+        })
+
+        .filter(item =>
+
+            item.description ||
+
+            item.quantity !== "" ||
+
+            item.rate !== "" ||
+
+            item.remarks
+
+        );
+
+}
+
+// CALCULATE OVERALL TOTAL
+
+function updateOverallTotal() {
+
+    const total = getItems().reduce(
+
+        (sum, item) => sum + (Number(item.total) || 0),
+
+        0
+
+    );
+
+    $("total_amount").value = total.toFixed(2);
+
+}
+
+// SET ITEM DATA
+
+function setItems(items) {
+
+    $("itemRows").innerHTML = "";
+
+    if (!items || !items.length) {
+
+        addItemRow();
+
+        return;
+
+    }
+
+    items.forEach(addItemRow);
+
+}
+
+// READ-ONLY / EDIT MODE
+
+function setFormReadOnly(readOnly) {
+
+    const form = $("challanForm");
+
+    form.querySelectorAll("input, textarea")
+
+        .forEach(element => {
+
+            element.disabled = readOnly;
+
+        });
+
+    $("addItemBtn").disabled = readOnly;
+
+    form.querySelectorAll(".danger")
+
+        .forEach(element => {
+
+            element.disabled = readOnly;
+
+        });
+
+    $("saveBtn").style.display =
+
+        readOnly ? "none" : "inline-block";
+
+    $("enableEditBtn").style.display =
+
+        readOnly ? "inline-block" : "none";
+
+}
+
+// GET FORM DATA
+
+function getFormData() {
+
+    return {
+
+        challan_no: $("challan_no").value.trim(),
+
+        challan_date: $("challan_date").value,
+
+        customer_name: $("customer_name").value.trim(),
+
+        customer_address: $("customer_address").value.trim(),
+
+        order_no: $("order_no").value.trim(),
+
+        order_date: $("order_date").value,
+
+        p_challan_no: $("p_challan_no").value.trim(),
+
+        items: getItems(),
+
+        total_amount: Number($("total_amount").value) || 0,
+
+        notes: $("notes").value.trim()
+
+    };
+
+}
+
+// FILL FORM WITH A SAVED RECORD
+
+function fillForm(data) {
+
+    $("challan_no").value = data.challan_no || "";
+
+    $("challan_date").value = data.challan_date || "";
+
+    $("customer_name").value = data.customer_name || "";
+
+    $("customer_address").value = data.customer_address || "";
+
+    $("order_no").value = data.order_no || "";
+
+    $("order_date").value = data.order_date || "";
+
+    $("p_challan_no").value = data.p_challan_no || "";
+
+    $("notes").value = data.notes || "";
+
+    setItems(data.items || []);
+
+    // Use the saved overall total, if available.
+
+    $("total_amount").value =
+
+        Number(data.total_amount ?? 0).toFixed(2);
+
+}
+
+// CLEAR FORM
+
+function clearForm() {
+
+    $("challanForm").reset();
+
+    $("itemRows").innerHTML = "";
+
+    addItemRow();
+
+    editingId = null;
+
+    setFormReadOnly(false);
+
+    $("enableEditBtn").style.display = "none";
+
+    clearMessage();
+
+}
+
+// LOAD ALL CHALLANS
+
+async function loadChallans() {
+
+    clearMessage();
+
+    $("results").innerHTML = "<p>Loading challans...</p>";
+
+    const { data, error } = await supabase
+
+        .from("challans")
+
+        .select("*")
+
+        .order("created_at", { ascending: false });
+
+    if (error) {
+
+        $("results").innerHTML = "";
+
+        showMessage(
+
+            "Unable to load challans: " + error.message
+
+        );
+
+        return;
+
+    }
+
+    records = data || [];
+
+    renderResults(records);
+
+}
+
+// DISPLAY SEARCH RESULTS
+
+function renderResults(list) {
+
+    $("results").innerHTML = "";
+
+    if (!list.length) {
+
+        $("results").innerHTML =
+
+            "<p>No challans found.</p>";
+
+        return;
+
+    }
+
+    list.forEach(record => {
+
+        const card = document.createElement("div");
+
+        card.className = "result-card";
+
+        const title = document.createElement("strong");
+
+        title.textContent =
+
+            record.challan_no || "No challan number";
+
+        const customer = document.createElement("p");
+
+        customer.textContent =
+
+            record.customer_name || "";
+
+        const date = document.createElement("p");
+
+        date.textContent =
+
+            record.challan_date || "";
+
+        const total = document.createElement("p");
+
+        total.textContent =
+
+            "Total: ₹" +
+
+            Number(record.total_amount || 0).toFixed(2);
+
+        const viewButton = document.createElement("button");
+
+        viewButton.type = "button";
+
+        viewButton.textContent = "View";
+
+        viewButton.addEventListener("click", () => {
+
+            editingId = record.id;
+
+            fillForm(record);
+
+            setFormReadOnly(true);
+
+            $("enableEditBtn").style.display = "inline-block";
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+        const pdfButton = document.createElement("button");
+
+        pdfButton.type = "button";
+
+        pdfButton.textContent = "Download PDF";
+
+        pdfButton.addEventListener("click", () => {
+
+            downloadPDF(record.id);
+
+        });
+
+        card.append(
+
+            title,
+
+            customer,
+
+            date,
+
+            total,
+
+            viewButton,
+
+            pdfButton
+
+        );
+
+        $("results").appendChild(card);
+
+    });
+
+}
+
+// SEARCH CHALLANS
+
+function searchChallans() {
+
+    const term = $("searchInput")
+
+        .value
+
+        .trim()
+
+        .toLowerCase();
+
+    if (!term) {
+
+        renderResults(records);
+
+        return;
+
+    }
+
+    const filtered = records.filter(record => {
+
+        return [
+
+            record.challan_no,
+
+            record.customer_name,
+
+            record.customer_address,
+
+            record.order_no
+
+        ]
+
+        .filter(Boolean)
+
+        .some(value =>
+
+            String(value).toLowerCase().includes(term)
+
+        );
+
+    });
+
+    renderResults(filtered);
+
+}
+
+// SAVE OR UPDATE CHALLAN
+
+async function saveChallan(event) {
+
+    event.preventDefault();
+
+    clearMessage();
+
+    const formData = getFormData();
+
+    if (!formData.challan_no) {
+
+        showMessage("Please enter the challan number.");
+
+        return;
+
+    }
+
+    if (!formData.customer_name) {
+
+        showMessage("Please enter the customer name.");
+
+        return;
+
+    }
+
+    if (!formData.items.length) {
+
+        showMessage("Please add at least one item.");
+
+        return;
+
+    }
+
+    $("saveBtn").disabled = true;
+
+    $("saveBtn").textContent = "Saving...";
+
+    try {
+
+        let result;
+
+        if (editingId) {
+
+            // UPDATE EXISTING RECORD
+
+            result = await supabase
+
+                .from("challans")
+
+                .update(formData)
+
+                .eq("id", editingId)
+
+                .select()
+
+                .single();
+
+        } else {
+
+            // INSERT NEW RECORD
+
+            result = await supabase
+
+                .from("challans")
+
+                .insert([formData])
+
+                .select()
+
+                .single();
+
+        }
+
+        if (result.error) {
+
+            throw result.error;
+
+        }
+
+        showMessage(
+
+            editingId
+
+                ? "Challan updated successfully."
+
+                : "Challan saved successfully.",
+
+            "success"
+
+        );
+
+        await loadChallans();
+
+        fillForm(result.data);
+
+        editingId = result.data.id;
+
+        setFormReadOnly(true);
+
+        $("enableEditBtn").style.display =
+
+            "inline-block";
+
+    } catch (error) {
+
+        showMessage(
+
+            "Save failed: " + error.message
+
+        );
+
+    } finally {
+
+        $("saveBtn").disabled = false;
+
+        $("saveBtn").textContent = "Save Challan";
+
+    }
+
+}
+
+// ENABLE EDITING
+
+function enableEditing() {
+
+    if (!editingId) {
+
+        showMessage("Select a saved challan first.");
+
+        return;
+
+    }
+
+    setFormReadOnly(false);
+
+    $("enableEditBtn").style.display = "none";
+
+    showMessage(
+
+        "Editing enabled. Save your changes when finished.",
+
+        "success"
+
+    );
+
+}
+
+// BUTTON EVENTS
+
+$("challanForm").addEventListener(
+
+    "submit",
+
+    saveChallan
+
+);
+
+$("addItemBtn").addEventListener(
+
+    "click",
+
+    () => addItemRow()
+
+);
+
+$("clearBtn").addEventListener(
+
+    "click",
+
+    clearForm
+
+);
+
+$("enableEditBtn").addEventListener(
+
+    "click",
+
+    enableEditing
+
+);
+
+$("searchBtn").addEventListener(
+
+    "click",
+
+    searchChallans
+
+);
+
+$("searchInput").addEventListener(
+
+    "input",
+
+    searchChallans
+
+);
+
+$("refreshBtn").addEventListener(
+
+    "click",
+
+    loadChallans
+
+);
+
+// AUTHENTICATION: protect this dashboard and use the existing index.html login page.
+async function checkAuthentication() {
+    const { data, error } = await supabase.auth.getSession();
+
+    if (error || !data.session) {
+        window.location.replace("index.html");
+        return false;
+    }
+
+    return true;
+}
+
+$("logoutBtn").addEventListener("click", async () => {
+    const logoutButton = $("logoutBtn");
+    logoutButton.disabled = true;
+    logoutButton.textContent = "Logging out...";
+
+    try {
+        const { error } = await supabase.auth.signOut({ scope: "local" });
+        if (error) throw error;
+
+        records = [];
+        editingId = null;
+        window.location.replace("index.html");
+    } catch (error) {
+        showMessage("Logout failed: " + error.message);
+        logoutButton.disabled = false;
+        logoutButton.textContent = "Logout";
+    }
+});
+
+const authenticated = await checkAuthentication();
+if (authenticated) {
+    await loadChallans();
+}
+
+supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_OUT" || !session) {
+        window.location.replace("index.html");
+    }
+});
+
+// INITIALIZE FORM
+
+addItemRow();
+
+// EXPORT CHALLAN TO EXCEL
+
+function getChallanExportFileName(challan) {
+
+    const raw = String(challan.challan_no || "").trim();
+
+    const safe = raw.replace(/[**\\\\\\/**:*?"<>|]/g, "_").trim();
+
+    // Normalize the exported filename to "Challan 01", "Challan 02", etc.
+
+    const numberMatch = safe.match(/(?:challan\s*)?(\d+)/i);
+
+    if (numberMatch) {
+
+        return "Challan " + numberMatch[1].padStart(2, "0");
+
+    }
+
+    return safe ? ( /^challan\b/i.test(safe) ? safe : "Challan " + safe ) : "Challan 01";
+
+}
+
+async function downloadExcel() {
+
+    if (!Array.isArray(records) || records.length === 0) {
+
+        showMessage("There are no challans to export.");
+
+        return;
+
+    }
+
+    const detailHeaders = [
+
+        "Company",
+
+        "Challan Number",
+
+        "Challan Date",
+
+        "Customer Name",
+
+        "Customer Address",
+
+        "Order Number",
+
+        "Order Date",
+
+        "P. Challan Number",
+
+        "Overall Total",
+
+        "Notes"
+
+    ];
+
+    const detailRows = records.map(challan => [
+
+        "Nath Krupa Laxmi Plastic",
+
+        challan.challan_no || "",
+
+        challan.challan_date || "",
+
+        challan.customer_name || "",
+
+        challan.customer_address || "",
+
+        challan.order_no || "",
+
+        challan.order_date || "",
+
+        challan.p_challan_no || "",
+
+        Number(challan.total_amount || 0),
+
+        challan.notes || ""
+
+    ]);
+
+    const itemRows = [[
+
+        "Challan Number",
+
+        "Sr. No.",
+
+        "Description",
+
+        "Quantity",
+
+        "Rate",
+
+        "Line Total",
+
+        "Remarks"
+
+    ]];
+
+    records.forEach(challan => {
+
+        (challan.items || []).forEach((item, index) => {
+
+            itemRows.push([
+
+                challan.challan_no || "",
+
+                index + 1,
+
+                item.description || "",
+
+                Number(item.quantity || 0),
+
+                Number(item.rate || 0),
+
+                Number(item.total || 0),
+
+                item.remarks || ""
+
+            ]);
+
+        });
+
+    });
+
+    const workbook = XLSX.utils.book_new();
+
+    const detailsSheet = XLSX.utils.aoa_to_sheet([
+
+        detailHeaders,
+
+        ...detailRows
+
+    ]);
+
+    detailsSheet["!cols"] = [
+
+        { wch: 27 }, { wch: 18 }, { wch: 16 }, { wch: 25 },
+
+        { wch: 42 }, { wch: 18 }, { wch: 16 }, { wch: 22 },
+
+        { wch: 18 }, { wch: 40 }
+
+    ];
+
+    detailsSheet["!freeze"] = { xSplit: 0, ySplit: 1 };
+
+    detailsSheet["!autofilter"] = {
+
+        ref: XLSX.utils.encode_range({
+
+            s: { r: 0, c: 0 },
+
+            e: { r: detailRows.length, c: detailHeaders.length - 1 }
+
+        })
+
+    };
+
+    const itemsSheet = XLSX.utils.aoa_to_sheet(itemRows);
+
+    itemsSheet["!cols"] = [
+
+        { wch: 18 }, { wch: 10 }, { wch: 42 }, { wch: 14 },
+
+        { wch: 16 }, { wch: 18 }, { wch: 32 }
+
+    ];
+
+    itemsSheet["!freeze"] = { xSplit: 0, ySplit: 1 };
+
+    itemsSheet["!autofilter"] = {
+
+        ref: XLSX.utils.encode_range({
+
+            s: { r: 0, c: 0 },
+
+            e: { r: Math.max(0, itemRows.length - 1), c: 6 }
+
+        })
+
+    };
+
+    // Currency values display with two decimal places.
+
+    for (let row = 2; row <= detailRows.length + 1; row++) {
+
+        const cell = detailsSheet["I" + row];
+
+        if (cell) cell.z = "#,##0.00";
+
+    }
+
+    for (let row = 2; row <= itemRows.length; row++) {
+
+        for (const col of ["E", "F"]) {
+
+            const cell = itemsSheet[col + row];
+
+            if (cell) cell.z = "#,##0.00";
+
+        }
+
+    }
+
+    XLSX.utils.book_append_sheet(workbook, detailsSheet, "Challan Details");
+
+    XLSX.utils.book_append_sheet(workbook, itemsSheet, "Items");
+
+    XLSX.writeFile(workbook, "All Challans.xlsx");
+
+}
+
+// EXPORT CHALLAN TO PDF
+
+async function downloadPDF(challanId = editingId) {
+
+    if (!challanId) {
+
+        showMessage("Please select a challan first.");
+
+        return;
+
+    }
+
+    const challan = records.find(
+
+        record => String(record.id) === String(challanId)
+
+    );
+
+    if (!challan) {
+
+        showMessage("Challan record not found.");
+
+        return;
+
+    }
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF({
+
+        orientation: "portrait",
+
+        unit: "mm",
+
+        format: "a4"
+
+    });
+
+    doc.setFontSize(16);
+
+    doc.text(
+
+        "Nath Krupa Laxmi Plastic",
+
+        105,
+
+        15,
+
+        { align: "center" }
+
+    );
+
+    doc.setFontSize(11);
+
+    doc.text(
+
+        "Challan Number: " + (challan.challan_no || ""),
+
+        14,
+
+        28
+
+    );
+
+    doc.text(
+
+        "Challan Date: " + (challan.challan_date || ""),
+
+        14,
+
+        35
+
+    );
+
+    doc.text(
+
+        "Customer: " + (challan.customer_name || ""),
+
+        14,
+
+        42
+
+    );
+
+    doc.text(
+
+        "Customer Address: " +
+
+        (challan.customer_address || ""),
+
+        14,
+
+        49
+
+    );
+
+    doc.text(
+
+        "Order Number: " + (challan.order_no || ""),
+
+        14,
+
+        56
+
+    );
+
+    doc.text(
+
+        "Order Date: " + (challan.order_date || ""),
+
+        14,
+
+        63
+
+    );
+
+    doc.text(
+
+        "P. Challan Number: " +
+
+        (challan.p_challan_no || ""),
+
+        14,
+
+        70
+
+    );
+
+    const rows = (challan.items || []).map(
+
+        (item, index) => [
+
+            index + 1,
+
+            item.description || "",
+
+            Number(item.quantity || 0),
+
+            item.remarks || ""
+
+        ]
+
+    );
+
+    doc.autoTable({
+
+        startY: 80,
+
+        head: [[
+
+            "Sr. No.",
+
+            "Description",
+
+            "Quantity",
+
+            "Remarks"
+
+        ]],
+
+        body: rows,
+
+        theme: "grid",
+
+        styles: {
+
+            fontSize: 9,
+
+            cellPadding: 3
+
+        },
+
+        headStyles: {
+
+            halign: "center"
+
+        },
+
+        columnStyles: {
+
+            0: { cellWidth: 18 },
+
+            1: { cellWidth: 90 },
+
+            2: { cellWidth: 25 },
+
+            3: { cellWidth: "auto" }
+
+        }
+
+    });
+
+    if (challan.notes) {
+
+        const finalY =
+
+            doc.lastAutoTable.finalY + 10;
+
+        doc.text(
+
+            "Notes: " + challan.notes,
+
+            14,
+
+            finalY
+
+        );
+
+    }
+
+    const fileName = getChallanExportFileName(challan);
+
+    doc.save(fileName + ".pdf");
+
+}
+
+$("excelBtn").addEventListener(
+
+    "click",
+
+    downloadExcel
+
+);
+
+$("pdfBtn").addEventListener(
+
+    "click",
+
+    downloadPDF
+
+);
+
+</script>
+
+</body>
+
+</html>
